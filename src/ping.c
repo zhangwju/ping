@@ -22,7 +22,7 @@
 #include <netinet/ip_icmp.h>
 #include <sys/select.h>
 
-#define MAX_PACKET			256
+#define MAX_PACKET		128
 
 typedef struct packet_info_t {
 	int seq; /* sequence number */
@@ -210,7 +210,7 @@ int icmp_parse_reply(void *buf, int len)
 			} 
 			else if (icmp->icmp_seq == MAX_PACKET) {
 				ping_end();
-				return 0;
+				return -1;
 			}
 		}
 		break;
